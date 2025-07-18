@@ -18,14 +18,14 @@ library(fpc)        # For calculating ARI
 # 1. Read data
 # Assuming gene expression matrix and coordinate matrix paths are "gene_expression_matrix.csv" and "coordinate_matrix.csv"
 # Specify file locations and names
-h5_file <- "E:/文献及数据/数据/乳腺癌/ST/Visium_FFPE_Human_Breast_Cancer_filtered_feature_bc_matrix.h5"
+h5_file <- "./Visium_FFPE_Human_Breast_Cancer_filtered_feature_bc_matrix.h5"
 # Read h5 format file (using Read10X_h5 function to read single-cell data in h5 format)
 seurat_data <- Read10X_h5(file = h5_file)
 expr_matrix <- as.matrix(seurat_data)
-TC <- read.csv("E:/文献及数据/数据/乳腺癌/ST/metadata.csv", header = TRUE)
+TC <- read.csv("./metadata.csv", header = TRUE)
 true_labels <- TC[,2]
 TC <- read.csv(metadata_file, header = TRUE)
-coord_matrix <- as.matrix(read.csv("E:/文献及数据/数据/乳腺癌/ST/spatial/tissue_positions_list.csv", header = F))
+coord_matrix <- as.matrix(read.csv("./spatial/tissue_positions_list.csv", header = F))
 coord_matrix <- coord_matrix[,c(1,5:6)]
 # Set first column as row names and remove that column
 rownames(coord_matrix) <- coord_matrix[, 1]
@@ -36,15 +36,15 @@ valid_indices <- !is.na(true_labels)
 
 # Convert to dataframe for operations
 coord_df <- as.data.frame(coord_matrix)
-coord_df$x <- as.numeric(coord_df$x)
-coord_df$y <- as.numeric(coord_df$y)
+coord_dfx<−as.numeric(coorddfx <- as.numeric(coord_dfx)
+coord_dfy<−as.numeric(coorddfy <- as.numeric(coord_dfy)
 str(coord_df)
 ##### Process coordinates ####
-coord_df$x <- coord_df$x - min(coord_df$x) 
-coord_df$y <- coord_df$y - min(coord_df$y) 
-scaleFactor <- max(coord_df$x, coord_df$y)
-coord_df$x <- coord_df$x / scaleFactor
-coord_df$y <- coord_df$y / scaleFactor
+coord_dfx<−coorddfx <- coord_dfx - min(coord_df$x) 
+coord_dfy<−coorddfy <- coord_dfy - min(coord_df$y) 
+scaleFactor <- max(coord_dfx,coorddfx, coord_dfy)
+coord_dfx<−coorddfx <- coord_dfx / scaleFactor
+coord_dfy<−coorddfy <- coord_dfy / scaleFactor
 coord_df <- as.matrix(coord_df[, c("x", "y")])
 # Set zero-value threshold (genes with >80% zeros will be removed)
 zero_threshold <- 80
@@ -175,7 +175,7 @@ kmeansFunc <- function(data, k) {
                                     iter.max = 100), silent = TRUE))
   
   # Return cluster labels and centroids
-  return(list(kmeans = cl$cluster, centers = cl$centers))
+  return(list(kmeans = clcluster,centers=clcluster, centers = clcenters))
 }
 
 GNMF <- function(B, P, max_iter, epsilon, a1, a2){
@@ -234,4 +234,4 @@ for (a1 in a1_values) {
 }
 end_time <- Sys.time()
 
-write.csv(J1,"E:/文献及数据/第二篇/结果/乳腺癌圆/提出_消融cluster2.csv")
+write.csv(J1,"./cluster2.csv")
