@@ -116,7 +116,7 @@ L <- D-A
 
 ################################ Adaptive knn construction ###################
 
-h5_file <- "E:/文献及数据/数据/乳腺癌/ST/Visium_FFPE_Human_Breast_Cancer_filtered_feature_bc_matrix.h5"
+h5_file <- "./Visium_FFPE_Human_Breast_Cancer_filtered_feature_bc_matrix.h5"
 # Read h5 format file (using Read10X_h5 function to read single-cell data in h5 format)
 data <- Read10X_h5(file = h5_file)
 data <- as.matrix(data)
